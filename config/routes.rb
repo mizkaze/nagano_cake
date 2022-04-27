@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    resources :items
+  end
+
+  namespace :admin do
+    resources :genres, only: [:index, :edit]
+  end
+
+
+
   # 設計通りのURLになるように修正
   devise_for :admin,skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
