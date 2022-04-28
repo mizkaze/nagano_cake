@@ -1,2 +1,35 @@
 <h1>Admin::Items#show</h1>
-<p>Find me in app/views/admin/items/show.html.erb</p>
+
+<h3>商品詳細</h3>
+
+<!--画像-->
+
+<label>商品名</label>
+<%= @item.name %>
+
+<br>
+
+<label>商品説明</label>
+<%= @item.introduction %>
+
+<br>
+
+<label>ジャンル</label>
+<%= @item.genre.name %>
+
+<br>
+
+<label>
+  税込価格<br>
+  （税抜価格）
+</label>
+（<%= @item.price %>）円
+
+<br>
+
+<label>販売ステータス</label>
+<%= @item.is_active %>
+
+<br>
+
+<%= link_to "編集する", edit_admin_item_path(@item.id) %>
