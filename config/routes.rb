@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :genres, only: [:create, :index, :edit]
+    resources :genres, only: [:create, :index, :edit, :update]
   end
 
 
