@@ -21,6 +21,7 @@
   <br>
 
   <label>ジャンル</label>
+  <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択してください" %>
 
   <br>
 
@@ -30,6 +31,10 @@
   <br>
 
   <label>販売ステータス</label>
+  <%= f.radio_button :is_active, true, checked: true %>
+  <%= f.label :done, '販売中', value: true %>
+  <%= f.radio_button :is_active, false %>
+  <%= f.label :done, '販売停止中', value: false %>
 
   <br>
 
