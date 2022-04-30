@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
 
   namespace :admin do
+    root to: 'homes#top'
+  end
+  namespace :admin do
     resources :items
   end
 
   namespace :admin do
-    resources :genres, only: [:index, :edit]
+    resources :genres, only: [:create, :index, :edit, :update]
   end
 
 
@@ -21,7 +24,6 @@ Rails.application.routes.draw do
     sessions: "public/sessions"
   }
 
-  devise_for :users
 
   root to: "homes#top"
   get 'homes/about' => 'homes#about', as: 'about'
