@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    resources :customers, only: [:show, :edit, :update, :delete_confirm, :delete]
+  end
   namespace :admin do
     root to: 'homes#top'
   end
