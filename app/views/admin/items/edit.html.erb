@@ -2,7 +2,7 @@
 
 <h3>商品編集</h3>
 
-<%= form_with model: @item, url: admin_item_path, method: :patch do |f| %>
+<%= form_with model: @item, url: admin_item_path(@item.id), method: :patch do |f| %>
 
   <label>商品画像</label>
   <%= f.file_field :image, accept: "image/*" %><br>
