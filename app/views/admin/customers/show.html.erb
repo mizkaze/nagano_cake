@@ -1,0 +1,36 @@
+<h1>Admin::Customers#show</h1>
+
+<h3><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報</h3>
+
+<label>会員ID</label>
+<%= @customer.id %><br>
+
+<label>氏名</label>
+<%= @customer.last_name %>　<%= @customer.first_name %><br>
+
+<label>フリガナ</label>
+<%= @customer.last_name_kana %>　<%= @customer.first_name_kana %><br>
+
+<label>郵便番号</label>
+<%= @customer.postal_code %><br>
+
+<label>住所</label>
+<%= @customer.address %><br>
+
+<label>電話番号</label>
+<%= @customer.telephone_number %><br>
+
+<label>メールアドレス</label>
+<%= @customer.email %><br>
+
+<label>会員ステータス</label>
+<% if @customer.is_active == true %>
+  有効
+<% else %>
+  無効
+<% end %>
+
+<br>
+
+<%= link_to "編集する", edit_admin_customer_path(@customer.id) %>
+<!--注文履歴一覧を見るリンク-->
