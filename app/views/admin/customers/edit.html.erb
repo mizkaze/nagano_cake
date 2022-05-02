@@ -3,6 +3,7 @@
 <h3><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h3>
 
 <%= form_with model: @customer, url: admin_customer_path, method: :patch do |f| %>
+<!--urlは指定しなきゃいけないけど、idは@customerの中に格納されている！-->
 
   <label>会員ID</label>
   <%= @customer.id %><br>

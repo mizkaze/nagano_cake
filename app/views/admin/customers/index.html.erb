@@ -18,8 +18,7 @@
     <% @customers.each do |customer| %>
       <tr>
         <th><%= customer.id %></th>
-        <th><%= link_to customer.last_name, admin_customer_path(customer.id) %></th>
-        <!--名前もリンクで表示できるように-->
+        <th><%= link_to customer.last_name+customer.first_name, admin_customer_path(customer.id) %></th>
         <th><%= customer.email %></th>
         <th>
           <% if customer.is_active == true %>
