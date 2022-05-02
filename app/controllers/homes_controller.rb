@@ -1,7 +1,7 @@
 class HomesController < ApplicationController
 
   def top
-    @new_arrival = Item.order(created_at: :desc).limit(4)
+    @new_arrivals = Item.order(created_at: :desc).limit(4)
   end
 
   def about

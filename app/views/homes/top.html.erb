@@ -9,11 +9,14 @@ homes#top
   購入には会員登録が必要になります<br>
 </div>
 
-<!--うまくできない、後で聞く-->
 <h3>新着商品</h3>
-<%= @new_arrival.each do |item| %>
+<% @new_arrivals.each do |item| %>
 
-  <%= image_tag item.image %>
+  <% if item.image.attached? %>
+    <%= image_tag item.image %>
+  <% else %>
+    <%= image_tag 'no_image' %><br>
+  <% end %>
   <%= item.name %><br>
   \<%= item.price %><br>
 
