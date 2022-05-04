@@ -1,1 +1,25 @@
 homes#top
+
+<%= render 'genre_search', genres: @genres %>
+
+<div>
+  ようこそ、ながのCAKEへ！<br>
+  このサイトは、ケーキ販売のECサイトになります<br>
+  会員でない方も閲覧はできますが、<br>
+  購入には会員登録が必要になります<br>
+</div>
+
+<h3>新着商品</h3>
+<% @new_arrivals.each do |item| %>
+
+  <% if item.image.attached? %>
+    <%= image_tag item.image %>
+  <% else %>
+    <%= image_tag 'no_image' %><br>
+  <% end %>
+  <%= item.name %><br>
+  \<%= item.price %><br>
+
+<% end %>
+
+<%= link_to "すべての商品を見る＞", public_items_path %>
