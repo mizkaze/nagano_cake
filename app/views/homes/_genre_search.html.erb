@@ -2,7 +2,6 @@
 
 <% genres.each do |genre| %>
 
-  <%= genre.name %>
-  <!--ジャンルをクリックしてそのジャンルの商品ページに行けるようにする-->
+  <%= link_to genre.name, public_item_path(genre.id) %>
 
 <% end %>
