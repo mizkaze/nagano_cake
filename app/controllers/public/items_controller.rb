@@ -1,6 +1,7 @@
 class Public::ItemsController < ApplicationController
   def index
     @genres = Genre.all
+    @item = Item.all
   end
 
   def show
