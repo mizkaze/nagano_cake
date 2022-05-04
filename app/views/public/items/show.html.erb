@@ -1,2 +1,18 @@
 <h1>Public::Items#show</h1>
 
+<%= render 'homes/genre_search', genres: @genres %>
+
+<br>
+
+<% if @item.image.attached? %>
+  <%= image_tag @item.image %>
+<% else %>
+  <%= image_tag 'no_image' %><br>
+<% end %>
+
+<h4><%= @item.name %></h4><br>
+<%= @item.introduction %><br>
+\<%= @item.add_tax_price.to_s(:delimited) %>(税込)
+
+<!--個数指定のプルダウン-->
+<!--カートに入れるボタン-->
