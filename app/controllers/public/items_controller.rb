@@ -2,6 +2,7 @@ class Public::ItemsController < ApplicationController
   def index
     @genres = Genre.all
     if params[:genre_id]
+    # もし(リンクを押したことで)[:genre_id]が送られてきたら↓
       @item = Item.where(genre_id: params[:genre_id], is_active: true)
       # 「genre_id:」はカラム名、「[:genre_id]」は自分で命名した”なんでもいい”名前
     else

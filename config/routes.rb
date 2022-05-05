@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
   namespace :public do
+    resources :cart_items, only: [:index, :update, :destroy, :create]
+  end
+  namespace :public do
     resources :addresses, only: [:index, :edit, :update, :create, :destroy]
   end
   namespace :public do
