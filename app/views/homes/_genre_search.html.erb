@@ -2,6 +2,9 @@
 
 <% genres.each do |genre| %>
 
-  <%= link_to genre.name, public_items_path %><br>
+  <%= link_to public_items_path(genre_id: genre.id) do %><br>
+  <!--「genre_id:」は自分で命名した”なんでもいい”名前-->
+  <%= genre.name %>
+  <% end %>
 
 <% end %>
