@@ -13,7 +13,7 @@ homes#top
 <% @new_arrivals.each do |item| %>
 
   <% if item.image.attached? %>
-    <%= image_tag item.image %>
+    <%= image_tag item.image %><br>
   <% else %>
     <%= image_tag 'no_image' %><br>
   <% end %>
