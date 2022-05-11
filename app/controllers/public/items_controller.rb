@@ -7,8 +7,8 @@ class Public::ItemsController < ApplicationController
   def create
     @new_cart_item = CartItem.new(cart_item_params)
     @new_cart_item.customer_id = current_customer.id
-    @new_cart_item.save
-    redirect_to public_cart_items_index_path
+    @new_cart_item.save!
+    redirect_to public_cart_items_path
   end
 
   def index
@@ -25,11 +25,15 @@ class Public::ItemsController < ApplicationController
   def show
     @genres = Genre.all
     @item = Item.find(params[:id])
+    @new_cart_item = CartItem.new
+    # form_withのmodelとして、型を指定する
+    # 「new」は「新しく作る」ではなく、「新しく作るための型を用意する」
+    # 「param is missing or the value is empty: cart_item」は、型を提示できていないということ
   end
 
   private
 
   def cart_item_params
-    params.require(:cart_item).permit(:item_id, :amount)
+    params.require(:cart_item).permit(:item_id, :amount, :customer_id)
   end
 end
