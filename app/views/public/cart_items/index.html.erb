@@ -2,7 +2,7 @@
 
 <h3>ショッピングカート</h3>
 
-<% @cart_items.each do |cart_item| %>
+<%= link_to 'カートを空にする', destroy_all_public_cart_items_path, method: :delete, "data-confirm" => "本当に削除しますか？" %>
 
   <table>
     <thead>
@@ -16,15 +16,19 @@
     </thead>
 
     <tbody>
-      <tr>
-        <th><%= cart_item.item.name %></th>
-        <th><%= cart_item.item.add_tax_price %></th>
-        <th><%= cart_item.amount %></th>
-        <th><%= cart_item.item.add_tax_price * cart_item.amount %></th>
-        <th></th>
-      </tr>
+      <% @cart_items.each do |cart_item| %>
+        <tr>
+          <th><%= cart_item.item.name %></th>
+          <th><%= cart_item.item.add_tax_price %></th>
+          <th><%= cart_item.amount %></th>
+          <th><%= cart_item.item.add_tax_price * cart_item.amount %></th>
+          <th><%= link_to '削除する', public_cart_item_path(cart_item.id), method: :delete %></th>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 
-<% end %>
+<label>合計金額</label>
+<br>
 
+<%= link_to '買い物を続ける', root_path %>
