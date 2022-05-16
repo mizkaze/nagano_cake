@@ -14,5 +14,14 @@
 <%= @item.introduction %><br>
 \<%= @item.add_tax_price.to_s(:delimited) %>(税込)
 
-<!--個数指定のプルダウン-->
-<!--カートに入れるボタン-->
+
+<%= form_with model: @new_cart_item, url: public_cart_items_path, method: :post do |f| %>
+
+  <!--???-->
+  <%= f.hidden_field :item_id, :value => @item.id %>
+
+  <%= f.select :amount, *[1..3], include_blank: "個数を選択" %>
+
+  <%= f.submit 'カートに入れる' %>
+
+<% end %>
