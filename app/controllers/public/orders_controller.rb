@@ -5,16 +5,33 @@ class Public::OrdersController < ApplicationController
 
   def create
     # Orderモデルに必要な情報を用意する
-    @new_order = current_customer.new(order_params)
-    @new_order.save
-    redirect_to confirm_public_orders_path
+    cart_items = current_customer.cart_items.all
+    @new_order = current_customer.orders.new(order_params)
+
+    if @new_order.save
+      cart_items.eash do |cart_item|
+        order_detail = OrderDetail.new
+        order_detail.item_id = cart_item.item_id
+        order_detail.order_id = @new_order.id
+        order_detail.amount = cart_item.amount
+        order_detail.price_with_tax = cart_item.item.price.add_tax_price
+        order_detail.save
+      end
+      redirect_to thanks_public_orders_path
+      cart_items.destroy_all
+
+    else
+      @new_order = Order.new(order_params)
+      render :new
+    end
+
   end
 
   def confirm
     @new_order = Order.new(order_params)
 
     if params[:order][:address_number] == "1"
-      @new_order.name = current_customer.name
+      @new_order.name = current_customer.last_name+current_customer.first_name
       @new_order.address = current_customer.address
 
     elsif params[:order][address_number] == "2"
@@ -37,7 +54,7 @@ class Public::OrdersController < ApplicationController
     end
 
     @cart_items = current_customer.cart_items.all
-    @total = @cart_items.inject(0) { |sum, item| sum + item.sum_price }
+    @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
   end
 
   def thanks
