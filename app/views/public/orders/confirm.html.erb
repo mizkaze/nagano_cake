@@ -35,22 +35,31 @@
 <table>
   <tr>
     <th>送料</th>
-    <td></td>
+    <td>
+      800
+    </td>
   </tr>
   <tr>
-    <th>商品小計</th>
-    <td></td>
+    <th>商品合計</th>
+    <td>
+      ¥<%= @total.round.to_s(:delimited)%>
+    </td>
   </tr>
   <tr>
     <th>請求金額</th>
-    <td></td>
+    <td>
+      ¥<%= @total.round.to_s(:delimited) %>
+      <!--送料足せない-->
+    </td>
   </tr>
 </table>
 
 <strong>支払い方法</strong>
-<!---->
+<%= @new_order.method_of_payment %><br>
 
 <strong>お届け先</strong>
-<!---->
+<%= @new_order.postal_code %><br>
+<%= @new_order.address %><br>
+<%= @new_order.name %><br>
 
 <!--注文を確定する-->
