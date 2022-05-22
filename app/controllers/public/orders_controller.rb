@@ -34,8 +34,11 @@ class Public::OrdersController < ApplicationController
       @new_order.name = current_customer.last_name+current_customer.first_name
       @new_order.address = current_customer.address
 
-    elsif params[:order][address_number] == "2"
-      if Address.exists?(name: params[:order][:registered])
+    elsif params[:order][:address_number] == "2"
+      if Address.exists?(id: params[:order][:registered])
+        # 「f.collection_select :registered」で指定している「配列データ個々の識別(id)」を使うため、
+        # (〇〇:)の部分は、探したい情報と同じカラム名を指定する必要がある
+        # viewでnameを指定していれば、こちらもnameにする
         @new_order.name = Address.find(params[:order][:registered]).name
         @new_order.address = Address.find(params[:order][:registered]).address
       else
