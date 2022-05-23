@@ -33,6 +33,7 @@ class Public::OrdersController < ApplicationController
     if params[:order][:address_number] == "1"
       @new_order.name = current_customer.last_name+current_customer.first_name
       @new_order.address = current_customer.address
+      @new_order.postal_code = current_customer.postal_code
 
     elsif params[:order][:address_number] == "2"
       if Address.exists?(id: params[:order][:registered])
@@ -41,6 +42,7 @@ class Public::OrdersController < ApplicationController
         # viewでnameを指定していれば、こちらもnameにする
         @new_order.name = Address.find(params[:order][:registered]).name
         @new_order.address = Address.find(params[:order][:registered]).address
+        @new_order.postal_code = Address.find(params[:order][:registered]).postal_code
       else
         render :new
       end
