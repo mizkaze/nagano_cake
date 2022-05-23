@@ -1,4 +1,7 @@
 class Public::OrdersController < ApplicationController
+# https://qiita.com/HAMO-ss/items/13665dd0370a22b8e166#controller
+# これを参考に↑
+
   def new
     @new_order = Order.new
   end
@@ -9,7 +12,7 @@ class Public::OrdersController < ApplicationController
     @new_order = current_customer.orders.new(order_params)
 
     if @new_order.save
-      cart_items.eash do |cart_item|
+      cart_items.each do |cart_item|
         order_detail = OrderDetail.new
         order_detail.item_id = cart_item.item_id
         order_detail.order_id = @new_order.id

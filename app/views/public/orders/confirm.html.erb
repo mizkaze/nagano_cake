@@ -55,7 +55,8 @@
 </table>
 
 <strong>支払い方法</strong>
-<%= @new_order.method_of_payment %><br>
+<%= @new_order.method_of_payment_i18n %><br>
+<!--「i18n」＝日本語化(enum)-->
 
 <strong>お届け先</strong><br>
 〒<%= @new_order.postal_code %><br>
@@ -69,12 +70,12 @@
   <%= f.hidden_field :postal_code %>
   <%= f.hidden_field :name %>
   <%= f.hidden_field :address %>
+  <%= f.hidden_field :method_of_payment %>
 
   <%= f.hidden_field :customer_id, value: current_customer.id %>
   <%= f.hidden_field :postage, value: @postage %>
   <%= f.hidden_field :total_payment, value: @total %>
-  <!--method_of_payment-->
-  <!--status-->
+  <%= f.hidden_field :status, value: Order.statuses.key(0) %>
 
   <%= f.submit "注文を確定する" %>
 
