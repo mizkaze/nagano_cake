@@ -28,6 +28,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
+    @postage = 800
     @new_order = Order.new(order_params)
 
     if params[:order][:address_number] == "1"
