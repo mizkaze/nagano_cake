@@ -10,3 +10,7 @@
           making: "制作中"
           before_shipping: "発送準備中"
           shipped: "発送済み"
+
+    time:
+      formats:
+        default: "%Y/%m/%d"

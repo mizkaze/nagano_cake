@@ -68,10 +68,8 @@ class Public::OrdersController < ApplicationController
     @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
   end
 
-  def thanks
-  end
-
   def index
+    @orders = current_customer.orders.all
   end
 
   def show
