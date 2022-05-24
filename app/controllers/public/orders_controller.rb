@@ -17,7 +17,9 @@ class Public::OrdersController < ApplicationController
         order_detail.item_id = cart_item.item_id
         order_detail.order_id = @new_order.id
         order_detail.amount = cart_item.amount
-        order_detail.price_with_tax = cart_item.item.price.add_tax_price
+        order_detail.price_with_tax = cart_item.item.add_tax_price
+        # 「item.add_tax_price」=「item.rb」の「add_tax_price」を使う
+        order_detail.making_status = 0
         order_detail.save
       end
       redirect_to thanks_public_orders_path
