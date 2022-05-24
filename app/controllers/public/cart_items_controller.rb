@@ -33,6 +33,12 @@ class Public::CartItemsController < ApplicationController
     @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
   end
 
+  def update
+    cart_item = CartItem.find(params[:id])
+    cart_item.update(cart_item_params)
+    redirect_to public_cart_items_path
+  end
+
   def destroy
     cart_item = CartItem.find(params[:id])
     cart_item.destroy
