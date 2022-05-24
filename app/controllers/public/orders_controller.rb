@@ -66,6 +66,7 @@ class Public::OrdersController < ApplicationController
 
     @cart_items = current_customer.cart_items.all
     @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
+    @billing_amount = @total + @postage
   end
 
   def index
@@ -73,9 +74,13 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
+    @postage = 800
     @order = Order.find(params[:id])
     @order_details = @order.order_details
-    @items = Order.find(params[:id]).items.all
+
+    @total = @order_details.inject(0) { |sum, item| sum + item.sum_of_price }
+    # 「sum_of_price」はモデルで定義した「単価*個数」の計算式
+    @billing_amount = @total + @postage
   end
 
 
