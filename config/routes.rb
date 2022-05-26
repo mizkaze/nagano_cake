@@ -3,7 +3,13 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :orders, only: [:show, :update]
     resources :order_details, only: [:update]
+    resources :customers, only: [:show, :index, :edit, :update]
+    root to: 'homes#top'
+    resources :items
+    resources :genres, only: [:create, :index, :edit, :update]
   end
+
+
   namespace :public do
     resources :orders, only: [:new, :create, :index, :show] do
       collection do
@@ -11,38 +17,15 @@ Rails.application.routes.draw do
         get 'thanks'
       end
     end
-  end
-
-  namespace :public do
     resources :cart_items, only: [:index, :update, :destroy, :create] do
       collection do
         delete 'destroy_all'
       end
     end
-  end
-  namespace :public do
     resources :addresses, only: [:index, :edit, :update, :create, :destroy]
-  end
-  namespace :public do
     resources :items, only: [:show, :index]
-  end
-  namespace :admin do
-    resources :customers, only: [:show, :index, :edit, :update]
-  end
-  namespace :public do
     resources :customers, only: [:show, :edit, :update, :delete_confirm, :delete]
   end
-  namespace :admin do
-    root to: 'homes#top'
-  end
-  namespace :admin do
-    resources :items
-  end
-
-  namespace :admin do
-    resources :genres, only: [:create, :index, :edit, :update]
-  end
-
 
 
   # 設計通りのURLになるように修正
