@@ -7,9 +7,15 @@
         status:
           hold: "入金待ち"
           verified: "入金確認"
-          making: "制作中"
+          making: "製作中"
           before_shipping: "発送準備中"
           shipped: "発送済み"
+      order_detail:
+        making_status:
+          disabled: "製作不可"
+          wating: "製作待ち"
+          in_the_making: "製作中"
+          complete: "製作完了"
 
     time:
       formats:

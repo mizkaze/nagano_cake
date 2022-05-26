@@ -24,7 +24,13 @@
   </tr>
   <tr>
     <th>注文ステータス</th>
-    <td><%= @order.status_i18n %></td>
+    <td>
+      <%= form_with model: @order, url: admin_order_path, method: :patch do |f| %>
+        <%= f.select :status, Order.statuses.keys.map{|k| [I18n.t("enums.order.status.#{k}"), k]} %>
+        <!--参考https://qiita.com/tanutanu/items/d44a92425188a4489ec6-->
+        <%= f.submit '更新' %>
+      <% end %>
+    </td>
   </tr>
 </table>
 
@@ -32,22 +38,24 @@
 <table>
   <thead>
     <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th>製作ステータス</th>
     </tr>
   </thead>
 
   <tbody>
+    <% @order_details.each do |detail| %>
     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td><%= detail.item.name %></td>
+      <td><%= detail.price_with_tax %></td>
+      <td><%= detail.amount %></td>
+      <td><%= detail.sum_of_price %></td>
+      <td><%= detail.making_status_i18n %></td>
     </tr>
+    <% end %>
   </tbody>
 </table>
 

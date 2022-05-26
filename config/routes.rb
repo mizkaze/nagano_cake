@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   namespace :admin do
-    resources :orders, only: [:show]
+    resources :orders, only: [:show, :update]
   end
   namespace :public do
     resources :orders, only: [:new, :create, :index, :show] do
