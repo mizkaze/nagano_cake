@@ -4,6 +4,9 @@ class Order < ApplicationRecord
     (self.price * 1.10).round
   end
 
+  def sum_of_price
+    item.taxin_price * amount
+  end
 
   belongs_to :customer
 
