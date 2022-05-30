@@ -22,7 +22,7 @@
         <%= order.customer.last_name %><%= order.customer.first_name %>
       </td>
       <td>
-        <!--注文個数-->
+        <%= order.order_details.inject(0) { |sum, item| sum + item.amount } %>
       </td>
       <td>
         <%= order.status_i18n %>
