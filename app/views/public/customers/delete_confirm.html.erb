@@ -1,2 +1,10 @@
 <h1>Public::Customers#delete_confirm</h1>
-<p>Find me in app/views/public/customers/delete_confirm.html.erb</p>
+
+<strong>本当に退会しますか？</strong>
+
+<p>退会すると、会員情報や</p><br>
+<p>これまでの購入履歴が閲覧できなくなります</p><br>
+<p>退会する場合は「退会する」をクリックしてください</p><br>
+
+<%= link_to '退会しない', public_customer_path(@customer.id) %>
+<%= link_to '退会する', delete_public_customers_path(@customer.id), method: :patch, "data-confirm" => "本当に退会してよろしいですか？" %>

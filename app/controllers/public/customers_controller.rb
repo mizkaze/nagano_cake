@@ -14,7 +14,18 @@ class Public::CustomersController < ApplicationController
     redirect_to public_customer_path(@customer.id)
   end
 
+# 退会機能はこの記事を参考にすれば良かったんだと思う
+# https://qiita.com/japwork/items/faca5e5ffbd5ddfff350
+
   def delete_confirm
+    @customer = current_customer
+  end
+
+  def delete
+    @customer = current_customer
+    @customer.update(is_active: false)
+    reset_session
+    redirect_to root_path
   end
 
 

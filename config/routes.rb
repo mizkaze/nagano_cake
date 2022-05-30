@@ -24,7 +24,12 @@ Rails.application.routes.draw do
     end
     resources :addresses, only: [:index, :edit, :update, :create, :destroy]
     resources :items, only: [:show, :index]
-    resources :customers, only: [:show, :edit, :update, :delete_confirm, :delete]
+    resources :customers, only: [:show, :edit, :update] do
+      collection do
+        get 'delete_confirm'
+        patch 'delete'
+      end
+    end
   end
 
 
