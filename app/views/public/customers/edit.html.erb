@@ -28,4 +28,4 @@
 
 <% end %>
 
-<!--退会ボタン作る-->
+<%= link_to '退会する', delete_public_customers_path(@customer.id), method: :patch, "data-confirm" => "本当に退会してよろしいですか？" %>
