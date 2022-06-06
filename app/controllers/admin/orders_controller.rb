@@ -19,6 +19,7 @@ class Admin::OrdersController < ApplicationController
     order = Order.find(params[:id])
     order.update(order_params)
 
+  #----注文ステータスと制作ステータスの連携----
     if order.status == "verified"
       order.order_details.each do |order_detail|
         order_detail.update(making_status: 1)
@@ -27,6 +28,10 @@ class Admin::OrdersController < ApplicationController
       end
     end
 
+    if order.order_details.making_status == "complete"
+      order.update(status: 3)
+    end
+  # --------
 
     redirect_to admin_order_path(order.id)
   end
