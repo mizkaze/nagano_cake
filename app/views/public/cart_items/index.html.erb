@@ -37,4 +37,7 @@
   ¥<%= @total.round.to_s(:delimited)%><br>
 
   <%= link_to '買い物を続ける', root_path %>
-  <%= link_to '情報入力へ進む', new_public_order_path %>
+
+  <% if current_customer.cart_items.count != 0 %>
+    <%= link_to '情報入力へ進む', new_public_order_path %>
+  <% end %>
