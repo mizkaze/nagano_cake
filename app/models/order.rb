@@ -19,4 +19,6 @@ class Order < ApplicationRecord
   enum status: { hold: 0, verified: 1, making: 2, before_shipping: 3, shipped: 4 }
 
 
+
+
 end

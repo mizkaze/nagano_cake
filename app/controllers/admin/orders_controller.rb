@@ -18,6 +18,16 @@ class Admin::OrdersController < ApplicationController
   def update
     order = Order.find(params[:id])
     order.update(order_params)
+
+    if order.status == "verified"
+      order.order_details.each do |order_detail|
+        order_detail.update(making_status: 1)
+        # メソッド(カラム名: enumの数字)
+        # (特定の言葉でも可、その場合はクオーテーションを使う)
+      end
+    end
+
+
     redirect_to admin_order_path(order.id)
   end
 
