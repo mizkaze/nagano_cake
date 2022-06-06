@@ -1,8 +1,10 @@
-<h3>ジャンル検索</h3>
+<h6>ジャンル検索</h6>
 
 <% genres.each do |genre| %>
 
-  <%= link_to public_items_path(genre_id: genre.id) do %><br>
+  <li class='nav-link py-1' >
+    <%= link_to public_items_path(genre_id: genre.id) do %>
+  </li><br>
   <!--「genre_id:」は自分で命名した”なんでもいい”名前-->
   <%= genre.name %>
   <% end %>
