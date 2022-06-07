@@ -1,25 +1,35 @@
-<%= render 'genre_search', genres: @genres %>
+<div class="container">
+  <div class="row">
 
-<div>
-  ようこそ、ながのCAKEへ！<br>
-  このサイトは、ケーキ販売のECサイトになります<br>
-  会員でない方も閲覧はできますが、<br>
-  購入には会員登録が必要になります<br>
+    <div class="col-lg-2 mt-3">
+      <%= render 'genre_search', genres: @genres %>
+    </div>
+
+    <div class="col-lg-10 my-5">
+      <div>
+        ようこそ、ながのCAKEへ！<br>
+        このサイトは、ケーキ販売のECサイトになります<br>
+        会員でない方も閲覧はできますが、<br>
+        購入には会員登録が必要になります<br>
+      </div>
+      <h3>新着商品</h3>
+      <div class="d-flex flex-wrap">
+      <% @new_arrivals.each do |item| %>
+        <div class="mb-3 mr-3">
+          <% if item.image.attached? %>
+            <%= link_to public_item_path(item.id) do %>
+            <%= image_tag item.image, size: "200x200" %><br>
+          <% end %>
+          <% else %>
+            <%= image_tag 'no_image', size: "200x200" %><br>
+          <% end %>
+          <%= link_to item.name, public_item_path(item.id) %><br>
+          ￥<%= item.price %><br>
+        </div>
+      <% end %>
+      </div>
+
+      <%= link_to "すべての商品を見る＞", public_items_path %>
+    </div>
+  </div>
 </div>
-
-<h3>新着商品</h3>
-<% @new_arrivals.each do |item| %>
-
-  <% if item.image.attached? %>
-    <%= link_to public_item_path(item.id) do %>
-      <%= image_tag item.image %><br>
-    <% end %>
-  <% else %>
-    <%= image_tag 'no_image' %><br>
-  <% end %>
-  <%= link_to item.name, public_item_path(item.id) %><br>
-  \<%= item.price %><br>
-
-<% end %>
-
-<%= link_to "すべての商品を見る＞", public_items_path %>
