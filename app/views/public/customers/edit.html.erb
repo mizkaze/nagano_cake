@@ -1,31 +1,47 @@
-<h1>Public::Customers#edit</h1>
+<div class="container">
+  <div class="row">
+    <div class="my-5">
+      <h3>会員情報編集</h3>
 
-<h3>会員情報編集</h3>
+      <%= form_with model: @customer, url: public_customer_path(@customer.id), method: :patch do |f| %>
+        <div class="d-table">
+          <div class="d-table-row">
+            <label class="d-table-cell">氏名</label>
+            <%= f.text_field :last_name, class: "d-table-cell ml-4 mt-2" %>
+            <%= f.text_field :first_name, class: "d-table-cell ml-4 mt-2" %>
+          </div>
+          <div class="d-table-row">
+            <label class="d-table-cell">フリガナ</label>
+            <%= f.text_field :last_name_kana, class: "d-table-cell ml-4 mt-2" %>
+            <%= f.text_field :first_name_kana, class: "d-table-cell ml-4 mt-2" %>
+          </div>
+          <div class="d-table-row">
+            <label class="d-table-cell">郵便番号</label>
+            <%= f.text_field :postal_code, class: "d-table-cell ml-4 mt-2" %>
+          </div>
+          <div class="d-table-row">
+            <label class="d-table-cell">住所</label>
+            <%= f.text_field :address, class: "d-table-cell ml-4 mt-2" %>
+          </div>
+          <div class="d-table-row">
+            <label class="d-table-cell">電話番号</label>
+            <%= f.text_field :telephone_number, class: "d-table-cell ml-4 mt-2" %>
+          </div>
+          <div class="d-table-row">
+            <label class="d-table-cell">メールアドレス</label>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "d-table-cell ml-4 mt-2" %>
+          </div>
+          <div class="d-table-row">
+            <div class="d-table-cell"></div>
+            <%= f.submit "編集内容を保存", class: "d-table-cell ml-4 mt-2" %>
+            <div class="d-table-cell"></div>
+            <%= link_to '退会する', delete_confirm_public_customers_path(@customer.id), class: "d-table-cell ml-4 mt-2 btn btn-danger btn-sm" %>
+          </div>
+        </div>
 
-<%= form_with model: @customer, url: public_customer_path(@customer.id), method: :patch do |f| %>
+      <% end %>
 
-  <label>氏名</label>
-  <%= f.text_field :last_name %>
-  <%= f.text_field :first_name %><br>
 
-  <label>フリガナ</label>
-  <%= f.text_field :last_name_kana %>
-  <%= f.text_field :first_name_kana %><br>
-
-  <label>郵便番号</label>
-  <%= f.text_field :postal_code %><br>
-
-  <label>住所</label>
-  <%= f.text_field :address %><br>
-
-  <label>電話番号</label>
-  <%= f.text_field :telephone_number %><br>
-
-  <label>メールアドレス</label>
-  <%= f.email_field :email, autofocus: true, autocomplete: "email" %><br>
-
-  <%= f.submit "編集内容を保存" %>
-
-<% end %>
-
-<%= link_to '退会する', delete_confirm_public_customers_path(@customer.id) %>
+    </div>
+  </div>
+</div>
