@@ -28,9 +28,7 @@ class Admin::OrdersController < ApplicationController
       end
     end
 
-    if order.order_details.making_status == "complete"
-      order.update(status: 3)
-    end
+    
   # --------
 
     redirect_to admin_order_path(order.id)
