@@ -1,10 +1,14 @@
-<h1>Public::Customers#delete_confirm</h1>
+<div class="container">
+  <div class="row">
+    <div class="text-center mx-auto my-5">
+      <h4>本当に退会しますか？</h4>
 
-<strong>本当に退会しますか？</strong>
+      <p>退会すると、会員情報や</p><br>
+      <p>これまでの購入履歴が閲覧できなくなります</p><br>
+      <p>退会する場合は「退会する」をクリックしてください</p><br>
 
-<p>退会すると、会員情報や</p><br>
-<p>これまでの購入履歴が閲覧できなくなります</p><br>
-<p>退会する場合は「退会する」をクリックしてください</p><br>
-
-<%= link_to '退会しない', public_customer_path(@customer.id) %>
-<%= link_to '退会する', delete_public_customers_path(@customer.id), method: :patch, "data-confirm" => "本当に退会してよろしいですか？" %>
+      <%= link_to '退会しない', public_customer_path(@customer.id), class: "btn btn-primary btn-sm" %>
+      <%= link_to '退会する', delete_public_customers_path(@customer.id), method: :patch, "data-confirm" => "本当に退会してよろしいですか？", class: "btn btn-danger btn-sm" %>
+    </div>
+  </div>
+</div>

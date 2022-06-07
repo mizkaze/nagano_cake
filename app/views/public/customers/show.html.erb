@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="my-3">
+    <div class="my-3 mx-auto">
       <h3 class="bg-light">マイページ</h3>
 
       <div class="pt-5">
@@ -10,33 +10,33 @@
         </div>
 
       <div class="my-4">
-        <label>氏名</label>
-        <%= @customer.last_name %>　<%= @customer.first_name %><br>
+        <strong style="line-height:2rem">氏名</strong>
+        <%= @customer.last_name %> <%= @customer.first_name %><br>
 
-        <label>カナ</label>
-        <%= @customer.last_name_kana %>　<%= @customer.first_name_kana %><br>
+        <strong style="line-height:2rem">カナ</strong>
+        <%= @customer.last_name_kana %> <%= @customer.first_name_kana %><br>
 
-        <label>郵便番号</label>
+        <strong style="line-height:2rem">郵便番号</strong>
         <%= @customer.postal_code %><br>
 
-        <label>住所</label>
+        <strong style="line-height:2rem">住所</strong>
         <%= @customer.address %><br>
 
-        <label>電話番号</label>
+        <strong style="line-height:2rem">電話番号</strong>
         <%= @customer.telephone_number %><br>
 
-        <label>メールアドレス</label>
+        <strong style="line-height:2rem">メールアドレス</strong>
         <%= @customer.email %><br>
 
 
         <div class="d-table my-3">
           <div class="d-table-row">
             <div class="d-table-cell"><strong>配送先</strong></div>
-            <div class="d-table-cell pl-5 py-2"><%= link_to '一覧を見る', public_addresses_path, class: "btn-primary btn-sm" %></div>
+            <div class="d-table-cell pl-5 py-2"><%= link_to '一覧を見る', public_addresses_path, class: "btn-info btn-sm" %></div>
           </div>
           <div class="d-table-row">
             <div class="d-table-cell"><strong>注文履歴</strong></div>
-            <div class="d-table-cell pl-5 py-2"><%= link_to '一覧を見る', public_orders_path, class: "btn-primary btn-sm" %></div>
+            <div class="d-table-cell pl-5 py-2"><%= link_to '一覧を見る', public_orders_path, class: "btn-info btn-sm" %></div>
           </div>
         </div>
         <div class="d-table">
