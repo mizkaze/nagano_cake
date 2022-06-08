@@ -27,11 +27,11 @@
                 <th>
                   <%= form_with model: cart_item, url: public_cart_item_path(cart_item.id), method: :patch do |f| %>
                     <%= f.select :amount, *[1..3] %>
-                    <%= f.submit '変更する' %>
+                    <%= f.submit '変更', class: "btn btn-outline-success btn-sm" %>
                   <% end %>
                 </th>
                 <th><%= cart_item.item.add_tax_price * cart_item.amount %>円</th>
-                <th><%= link_to '削除する', public_cart_item_path(cart_item.id), method: :delete %></th>
+                <th><%= link_to '削除する', public_cart_item_path(cart_item.id), method: :delete, class: "btn btn-outline-danger btn-sm" %></th>
               </tr>
             <% end %>
           </tbody>
@@ -45,9 +45,9 @@
         </table>
 
         <div class="d-flex">
-          <%= link_to '買い物を続ける', root_path, class: "mr-auto p-2" %>
+          <%= link_to '買い物を続ける', root_path, class: "mr-auto p-2 btn btn-secondary btn-sm" %>
           <% if current_customer.cart_items.count != 0 %>
-            <%= link_to '情報入力へ進む', new_public_order_path, class: "p-2" %>
+            <%= link_to '情報入力へ進む', new_public_order_path, class: "p-2 btn btn-primary btn-sm" %>
           <% end %>
         </div>
 
