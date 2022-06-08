@@ -36,6 +36,7 @@
               <th>住所</th>
               <th>宛名</th>
               <th></th>
+              <th></th>
             </tr>
           </thead>
 
@@ -52,8 +53,10 @@
                   <%= address.name %>
                 </th>
                 <th>
-                  <%= link_to '編集する', edit_public_address_path(address.id) %>
-                  <%= link_to '削除する', public_address_path(address.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+                  <%= link_to '編集する', edit_public_address_path(address.id), class: "btn btn-success btn-sm" %>
+                </th>
+                <th>
+                  <%= link_to '削除する', public_address_path(address.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-secondary btn-sm" %>
                 </th>
               </tr>
             <% end %>
