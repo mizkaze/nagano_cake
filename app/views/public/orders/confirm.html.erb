@@ -1,81 +1,107 @@
-<h1>Public::Orders#confirm</h1>
+<div class="container">
+  <div class="row">
+    <div class="mt-5 mb-3">
+      <h3>注文情報確認</h3>
+    </div>
+  </div>
 
-<h3>注文情報確認</h3>
+  <div class="row">
+    <div class="col-lg-5">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+          </tr>
+        </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>商品名</th>
-      <th>単価(税込)</th>
-      <th>数量</th>
-      <th>小計</th>
-    </tr>
-  </thead>
+        <tbody>
+          <% @cart_items.each do |cart_item| %>
+          <tr>
+            <th>
+              <%= cart_item.item.name %>
+            </th>
+            <th>
+              <%= (cart_item.item.price).to_s(:delemited) %>
+            </th>
+            <th>
+              <%= cart_item.amount %>
+            </th>
+            <th>
+              <%= (cart_item.item.price*cart_item.amount).to_s(:delemited) %>
+            </th>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      </div>
 
-  <tbody>
-    <% @cart_items.each do |cart_item| %>
-    <tr>
-      <th>
-        <%= cart_item.item.name %>
-      </th>
-      <th>
-        <%= (cart_item.item.price).to_s(:delemited) %>
-      </th>
-      <th>
-        <%= cart_item.amount %>
-      </th>
-      <th>
-        <%= (cart_item.item.price*cart_item.amount).to_s(:delemited) %>
-      </th>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+      <div class="col-lg-7"></div>
 
-<table>
-  <tr>
-    <th>送料</th>
-    <td>
-      <%= @postage %>
-    </td>
-  </tr>
-  <tr>
-    <th>商品合計</th>
-    <td>
-      ¥<%= @total.round.to_s(:delimited) %>
-    </td>
-  </tr>
-  <tr>
-    <th>請求金額</th>
-    <td>
-      ¥<%= @billing_amount.to_s(:delimited) %>
-    </td>
-  </tr>
-</table>
+      <div class="col-lg-5 my-5">
+        <table class="table table-borderless">
+          <tr>
+            <th>支払い方法</th>
+            <td><%= @new_order.method_of_payment_i18n %></td>
+            <!--「i18n」＝日本語化(enum)-->
+          </tr>
+          <tr>
+            <th>お届け先</th>
+            <td>〒<%= @new_order.postal_code %></td>
+            <td><%= @new_order.address %></td>
+          </tr>
+          <tr>
+            <th></th>
+            <td><%= @new_order.name %></td>
+          </tr>
+        </table>
 
-<strong>支払い方法</strong>
-<%= @new_order.method_of_payment_i18n %><br>
-<!--「i18n」＝日本語化(enum)-->
+        <%= form_with model: @new_order, url: public_orders_path, method: :post do |f| %>
+        <!--form_withでは、その時点で持たされた情報は既にモデル(変数内)に入っているので、-->
+        <!--カラムを指定するだけで、情報を送ることができる-->
 
-<strong>お届け先</strong><br>
-〒<%= @new_order.postal_code %><br>
-<%= @new_order.address %><br>
-<%= @new_order.name %><br>
+          <%= f.hidden_field :postal_code %>
+          <%= f.hidden_field :name %>
+          <%= f.hidden_field :address %>
+          <%= f.hidden_field :method_of_payment %>
 
-<%= form_with model: @new_order, url: public_orders_path, method: :post do |f| %>
-<!--form_withでは、その時点で持たされた情報は既にモデル(変数内)に入っているので、-->
-<!--カラムを指定するだけで、情報を送ることができる-->
+          <%= f.hidden_field :customer_id, value: current_customer.id %>
+          <%= f.hidden_field :postage, value: @postage %>
+          <%= f.hidden_field :total_payment, value: @total %>
 
-  <%= f.hidden_field :postal_code %>
-  <%= f.hidden_field :name %>
-  <%= f.hidden_field :address %>
-  <%= f.hidden_field :method_of_payment %>
+      </div>
 
-  <%= f.hidden_field :customer_id, value: current_customer.id %>
-  <%= f.hidden_field :postage, value: @postage %>
-  <%= f.hidden_field :total_payment, value: @total %>
+      <div class="col-lg-1"></div>
 
+      <div class="col-lg-6 my-5">
+        <table class="table table-borderless">
+          <tr>
+            <th>送料</th>
+            <td>
+              <%= @postage %>
+            </td>
+          </tr>
+          <tr>
+            <th>商品合計</th>
+            <td>
+              ¥<%= @total.round.to_s(:delimited) %>
+            </td>
+          </tr>
+          <tr>
+            <th>請求金額</th>
+            <td>
+              ¥<%= @billing_amount.to_s(:delimited) %>
+            </td>
+            <td>
+              <%= f.submit "注文を確定する", class: "btn btn-success btn-sm" %>
+              <% end %>
+            </td>
+          </tr>
+        </table>
+      </div>
 
-  <%= f.submit "注文を確定する" %>
-
-<% end %>
+    </div>
+  </div>
+</div>
