@@ -1,35 +1,40 @@
-<h1>Admin::Homes#top</h1>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto">
+      <h3 class="mt-5 mb-3 bg-light">注文履歴一覧</h3>
+      <div>
+        <table class="table table-borderless mb-5">
+          <thead>
+            <tr>
+              <th>購入日時</th>
+              <th>購入者</th>
+              <th>注文個数</th>
+              <th>注文ステータス</th>
+            </tr>
+          </thead>
 
-<h3>注文履歴一覧</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>購入日時</th>
-      <th>購入者</th>
-      <th>注文個数</th>
-      <th>注文ステータス</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @orders.each do |order| %>
-    <tr>
-      <td>
-        <%= link_to admin_order_path(order.id) do %>
-          <%= l order.created_at %>
-        <% end %>
-      </td>
-      <td>
-        <%= order.customer.last_name %><%= order.customer.first_name %>
-      </td>
-      <td>
-        <%= order.order_details.inject(0) { |sum, item| sum + item.amount } %>
-      </td>
-      <td>
-        <%= order.status_i18n %>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+          <tbody>
+            <% @orders.each do |order| %>
+            <tr>
+              <td>
+                <%= link_to admin_order_path(order.id) do %>
+                  <%= l order.created_at %>
+                <% end %>
+              </td>
+              <td>
+                <%= order.customer.last_name %><%= order.customer.first_name %>
+              </td>
+              <td>
+                <%= order.order_details.inject(0) { |sum, item| sum + item.amount } %>
+              </td>
+              <td>
+                <%= order.status_i18n %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
