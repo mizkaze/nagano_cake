@@ -1,37 +1,39 @@
-<h1>Admin::Customers#index</h1>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto my-5">
+      <h3 class="bg-light">会員一覧</h3>
+      <div>
+        <table class="table table-borderless mt-3">
+          <thead>
+            <tr>
+              <th>会員ID</th>
+              <th>氏名</th>
+              <th>メールアドレス</th>
+              <th>ステータス</th>
+            </tr>
+          </thead>
 
-<h3>会員一覧</h3>
+          <tbody>
 
-<table>
-
-  <thead>
-    <tr>
-      <th>会員ID</th>
-      <th>氏名</th>
-      <th>メールアドレス</th>
-      <th>ステータス</th>
-    </tr>
-  </thead>
-
-  <tbody>
-
-    <% @customers.each do |customer| %>
-      <tr>
-        <th><%= customer.id %></th>
-        <th><%= link_to customer.last_name+customer.first_name, admin_customer_path(customer.id) %></th>
-        <th><%= customer.email %></th>
-        <th>
-          <% if customer.is_active == true %>
-            有効
-          <% else %>
-            無効
-          <% end %>
-        </th>
-      </tr>
-    <% end %>
-
-  </tbody>
-
-</table>
+            <% @customers.each do |customer| %>
+              <tr>
+                <th><%= customer.id %></th>
+                <th><%= link_to customer.last_name+customer.first_name, admin_customer_path(customer.id) %></th>
+                <th><%= customer.email %></th>
+                <th>
+                  <% if customer.is_active == true %>
+                    有効
+                  <% else %>
+                    無効
+                  <% end %>
+                </th>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 
 
